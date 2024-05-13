@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=z, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <title>Packs</title>
+</head>
+<body>
+    <h1>Packages</h1>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Sender</th>
+            <th scope="col">Receiver</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Sender City</th>
+            <th scope="col">Destination City</th>
+            <th scope="col">Tracking</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+
+            {% for package in pack %}
+            <tr>
+                <th scope="row">{{ package.pack_id }}</th>
+                <td>{{ package.sender }}</td>
+                <td>{{ package.receiver }}</td>
+                <td>{{ package.name }}</td>
+                <td>{{ package.description }}</td>
+                <td>{{ package.sender_city }}</td>
+                <td>{{ package.destination_city }}</td>
+                <td>{{ package.tracking }}</td>
+                <td>{{ package.status }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    
+    <form action = "" method = "post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-secondary">Logout</button>
+    </form>
+</body>
+</html>

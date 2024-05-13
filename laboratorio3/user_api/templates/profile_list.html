@@ -13,5 +13,9 @@
         <li>{{ profile.username }}</li>
         {% endfor %}
     </ul>
+    <form action = "" method = "post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-secondary">Logout</button>
+    </form>
 </body>
 </html>

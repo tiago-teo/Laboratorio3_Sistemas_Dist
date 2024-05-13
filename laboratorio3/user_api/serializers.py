@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate
+from .models import Package
 
 UserModel = get_user_model()
 
@@ -27,3 +28,8 @@ class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = UserModel
 		fields = ('email', 'username')
+
+class PackSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Package
+		fields = ["id", "sender", "receiver", "name", "description", "sender_city", "destination_city", "tracking", "status"]
