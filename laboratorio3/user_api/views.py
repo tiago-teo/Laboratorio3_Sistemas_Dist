@@ -46,7 +46,7 @@ class UserLogin(APIView):
 	    if serializer.is_valid(raise_exception=True):
 		    user = serializer.check_user(data)
 		    login(request, user)
-		    return redirect('user')
+		    return redirect('package')
 
 
 class UserLogout(APIView):
