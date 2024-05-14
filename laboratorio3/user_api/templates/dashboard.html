@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=z, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <title>Users</title>
+    <style> 
+        .i-am-centered { 
+            margin: auto; 
+            max-width: 300px; 
+            padding-top: 10%; 
+        } 
+    </style> 
+</head>
+<body>
+    <body> 
+        <div class="i-am-centered"> 
+            <h1>Welcome to Package Manager</h1>
+            <div class="col-6">
+                <a class="btn btn-warning w-100 py-2" href="{% url 'register' %}">Registar</a>
+            </div>
+            <div class="col-6">
+                <a class="btn btn-primary w-100 py-2" href="{% url 'login' %}">Login</a>
+            </div>
+        </div> 
+</body>
+</html>

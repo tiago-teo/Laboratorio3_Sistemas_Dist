@@ -8,14 +8,14 @@
 </head>
 <body>
     <h1>Profiles</h1>
+    {% csrf_token %}
     <ul>
         {% for profile in user %}
         <li>{{ profile.username }}</li>
         {% endfor %}
     </ul>
-    <form action = "" method = "post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-secondary">Logout</button>
-    </form>
+    <div class="col-6">
+        <a class="btn btn-primary w-100 py-2" href="{% url 'logout' %}">Logout</a>
+    </div>
 </body>
 </html>

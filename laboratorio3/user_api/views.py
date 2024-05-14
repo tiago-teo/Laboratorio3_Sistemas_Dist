@@ -10,7 +10,7 @@ from .validations import custom_validation, validate_email, validate_password
 from user_api.forms import RegisterForm, LoginForm
 from django.shortcuts import redirect
 from .models import Package
-
+from itertools import chain
 
 class UserRegister(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -52,9 +52,9 @@ class UserLogin(APIView):
 class UserLogout(APIView):
 	permission_classes = (permissions.AllowAny,)
 	authentication_classes = ()
-	def post(self, request):
+	def get(self, request):
 		logout(request)
-		return Response(status=status.HTTP_200_OK)
+		return redirect('/')
 
 
 class UserView(APIView):
@@ -70,8 +70,7 @@ class UserView(APIView):
         return Response({'user': queryset}, status=status.HTTP_200_OK)
     
     def post(self, request):
-	    logout(request)
-	    return redirect('login')
+	    pass
 
 class Packages(APIView):
     renderer_classes = [TemplateHTMLRenderer]
@@ -81,5 +80,21 @@ class Packages(APIView):
 
     def get(self, request):
         serializer = PackSerializer
-        queryset = Package.objects.all()
-        return Response({'pack': queryset}, status=status.HTTP_200_OK)
+        username = request.user.username
+        if request.GET.get('search'):
+            pack = Package.objects.filter(pack_id=request.GET.get('search'), sender=username) | Package.objects.filter(pack_id=request.GET.get('search'), receiver=username) | Package.objects.filter(pack_id=request.GET.get('search'), name=username)
+        else:
+            pack = Package.objects.filter(sender=username) | Package.objects.filter(receiver=username) | Package.objects.filter(name=username)
+        return Response({'pack': pack}, status=status.HTTP_200_OK)
+
+    def dynamic_articles_view(self, request):
+        context['object_list'] = Package.objects.filter(pack_id=request.GET.get('search'))
+        return Response({'pack': pack}, status=status.HTTP_200_OK)
+
+class Dashboard(APIView):
+    permission_classes = (permissions.AllowAny,)
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'dashboard.html'
+
+    def get(self, request):
+        return Response(status=status.HTTP_200_OK)
