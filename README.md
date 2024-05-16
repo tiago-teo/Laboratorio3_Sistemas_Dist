@@ -1,8 +1,8 @@
 # Laboratorio3_Sistemas_Dist
  Using python and django to create a api with web services. This project has the objective of creating an interface with administrators and simple users. 
- Administrators can add, edit, delete, packages information. Additionaly they can see what users exist and add, edit or delete them.
- Users can list they're packages, search for a specific package and see all the information related to their packages
- Packages have an id, sender, receiver, name, description, sender city, destination city, tracking, status
+ - Administrators can add, edit, delete, packages information. Additionaly they can see what users exist and add, edit or delete them.
+ - Users can list they're packages, search for a specific package and see all the information related to their packages
+ - Packages have an id, sender, receiver, name, description, sender city, destination city, tracking, status
 
 ## Requirements
  - python
