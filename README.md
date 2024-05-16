@@ -12,7 +12,7 @@
 
 ## How to Use
 ### Setup
- - git clone https://github.com/tiago-teo/Laboratorio3_Sistemas_Dist/
+ - git clone https://github.com/tiago-teo/Laboratorio3_Sistemas_Dist.git
  - cd Laboratorio3_Sistemas_Dist/laboratorio3/
  - python manage.py makemigrations
  - python manage.py migrate
