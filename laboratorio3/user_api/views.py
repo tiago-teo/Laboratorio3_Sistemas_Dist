@@ -57,20 +57,6 @@ class UserLogout(APIView):
 		return redirect('/')
 
 
-class UserView(APIView):
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'profile_list.html'
-    permission_classes = (permissions.IsAuthenticated,)
-    authentication_classes = (SessionAuthentication,)
-    
-	##
-    def get(self, request):
-        serializer = UserSerializer(request.user)
-        queryset = AppUser.objects.all()
-        return Response({'user': queryset}, status=status.HTTP_200_OK)
-    
-    def post(self, request):
-	    pass
 
 class Packages(APIView):
     renderer_classes = [TemplateHTMLRenderer]
@@ -87,9 +73,6 @@ class Packages(APIView):
             pack = Package.objects.filter(sender=username) | Package.objects.filter(receiver=username) | Package.objects.filter(name=username)
         return Response({'pack': pack}, status=status.HTTP_200_OK)
 
-    def dynamic_articles_view(self, request):
-        context['object_list'] = Package.objects.filter(pack_id=request.GET.get('search'))
-        return Response({'pack': pack}, status=status.HTTP_200_OK)
 
 class Dashboard(APIView):
     permission_classes = (permissions.AllowAny,)
