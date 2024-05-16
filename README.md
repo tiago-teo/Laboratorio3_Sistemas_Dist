@@ -12,11 +12,11 @@
 
 ## How to Use
 ### Setup
- git clone https://github.com/tiago-teo/Laboratorio3_Sistemas_Dist/
- cd Laboratorio3_Sistemas_Dist/laboratorio3/
- python manage.py makemigrations
- python manage.py migrate
- python manage.py runserver
+ - git clone https://github.com/tiago-teo/Laboratorio3_Sistemas_Dist/
+ - cd Laboratorio3_Sistemas_Dist/laboratorio3/
+ - python manage.py makemigrations
+ - python manage.py migrate
+ - python manage.py runserver
 
 ### Creating superuser
  - Ctrl + C to stop server if its running
