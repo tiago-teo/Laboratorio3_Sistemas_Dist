@@ -68,7 +68,10 @@ class Packages(APIView):
         serializer = PackSerializer
         username = request.user.username
         if request.GET.get('search'):
-            pack = Package.objects.filter(pack_id=request.GET.get('search'), sender=username) | Package.objects.filter(pack_id=request.GET.get('search'), receiver=username) | Package.objects.filter(pack_id=request.GET.get('search'), name=username)
+            try:
+                pack = Package.objects.filter(pack_id=request.GET.get('search'), sender=username) | Package.objects.filter(pack_id=request.GET.get('search'), receiver=username) | Package.objects.filter(pack_id=request.GET.get('search'), name=username)
+            except:
+                pack = Package.objects.filter(sender=request.GET.get('search')) | Package.objects.filter(sender=request.GET.get('search'), receiver=username) | Package.objects.filter(sender=request.GET.get('search'), name=username) | Package.objects.filter(receiver=request.GET.get('search'), sender=username) | Package.objects.filter(receiver=request.GET.get('search')) | Package.objects.filter(receiver=request.GET.get('search'), name=username) | Package.objects.filter(name=request.GET.get('search'), sender=username) | Package.objects.filter(name=request.GET.get('search'), receiver=username) | Package.objects.filter(name=request.GET.get('search')) | Package.objects.filter(sender_city=request.GET.get('search'), sender=username) | Package.objects.filter(sender_city=request.GET.get('search'), receiver=username) | Package.objects.filter(sender_city=request.GET.get('search'), name=username) | Package.objects.filter(destination_city=request.GET.get('search'), sender=username) | Package.objects.filter(destination_city=request.GET.get('search'), receiver=username) | Package.objects.filter(destination_city=request.GET.get('search'), name=username)
         else:
             pack = Package.objects.filter(sender=username) | Package.objects.filter(receiver=username) | Package.objects.filter(name=username)
         return Response({'pack': pack}, status=status.HTTP_200_OK)
